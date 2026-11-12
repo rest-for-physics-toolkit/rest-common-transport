@@ -4,8 +4,9 @@ Electron transport tables (drift velocity, diffusion, Townsend and attachment ve
 projects of rest-for-physics-toolkit for [restv2](https://github.com/rest-for-physics-toolkit/rest-framework),
 computed with `restGarfield` (Magboltz): gases for now, also other media.
 
-Only the configurations are in the repository. The medium files are the assets of each release (a tag `v*`),
-so a project reads a fixed version of them by URL, in `mediumFile` of `TRestDetectorMedium`:
+The medium files are committed with their configurations (they are small, and too slow to compute in a CI)
+and are the assets of each release (a tag `v*`), so a project reads a fixed version of them by URL, in
+`mediumFile` of `TRestDetectorMedium`:
 
 ```yaml
 medium:
@@ -40,10 +41,10 @@ With restv2 built with `restGarfield` in the environment (its `thisREST.sh` sour
 computes all the media at once (each one splitting its field nodes in processes, `restGarfield --jobs`); it
 takes minutes on a machine with ~256 cores, too slow for a CI.
 
-A new medium: a `restGarfield` YAML and its line in `generate.sh`.
+A new medium: a `restGarfield` YAML, its line in `generate.sh` and its medium file, committed together (the
+CI, `.github/workflows/release.yml`, checks that the `mediumFile` of each YAML is in the repository).
 
 ## Release
 
-1. `git tag v1.1 && git push origin v1.1`.
-2. In GitHub, create the release of the tag (Releases, Draft a new release) and attach `ArIso.root`,
-   `NeIso.root` and `NeXeIso.root`.
+1. Check the CI of `master`.
+2. `git tag v1.1 && git push origin v1.1`: the CI creates the release with the medium files.

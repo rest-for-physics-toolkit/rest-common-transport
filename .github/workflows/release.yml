@@ -1,0 +1,43 @@
+# The medium files are committed with their configurations (computed locally with generate.sh, too slow for
+# a CI runner). At each push and pull request, checks that the medium file of each configuration is in the
+# repository; on each tag v* (e.g. git tag v1.0 && git push origin v1.0), attaches them to its release. The
+# projects read them with
+#   https://github.com/<owner>/rest-common-transport/releases/download/<tag>/<medium file>
+name: Transport
+
+on:
+  push:
+    branches: [master]
+    tags: ["v*"]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  transport:
+    name: Transport
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check the medium files
+        run: |
+          status=0
+          for yaml in *.yaml; do
+            file=$(sed -n 's/^ *mediumFile: *"\(.*\)".*/\1/p' "$yaml")
+            if [ -z "$file" ] || [ ! -f "$file" ]; then
+              echo "::error file=$yaml::medium file '$file' not in the repository"
+              status=1
+            else
+              echo "$yaml -> $file"
+            fi
+          done
+          exit $status
+
+      - name: Release
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: "*.root"

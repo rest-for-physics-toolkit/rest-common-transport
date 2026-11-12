@@ -1,3 +1,2 @@
-# Generated (release assets attached by hand: generate.sh)
-*.root
+# Logs of generate.sh (the medium files are committed: release assets)
 *.log
