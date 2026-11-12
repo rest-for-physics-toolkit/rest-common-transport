@@ -27,13 +27,13 @@ transport (this repository) and
 
 Computed at 1 bar and 293.15 K, from 10 to 3000 V/cm with 50 logarithmic nodes; the medium scales them with
 E/p to its pressure. A file holds several media (the concentrations of a mixture), named by their
-composition in %:
+composition in %. The files are in `data/`; the asset of the release has the name of the file:
 
-| Asset | Media | Configuration |
+| File | Media | Configuration |
 |---|---|---|
-| `ArIso.root` | `Ar99_iC4H10_1`, `Ar98_iC4H10_2`, `Ar95_iC4H10_5`, `Ar90_iC4H10_10` | `ArIso.yaml` |
-| `NeIso.root` | `Ne99_iC4H10_1`, `Ne98_iC4H10_2`, `Ne95_iC4H10_5`, `Ne90_iC4H10_10` | `NeIso.yaml` |
-| `NeXeIso.root` | `Ne49_Xe49_iC4H10_2` | `NeXeIso.yaml` |
+| `data/ArIso.root` | `Ar99_iC4H10_1`, `Ar98_iC4H10_2`, `Ar95_iC4H10_5`, `Ar90_iC4H10_10` | `ArIso.yaml` |
+| `data/NeIso.root` | `Ne99_iC4H10_1`, `Ne98_iC4H10_2`, `Ne95_iC4H10_5`, `Ne90_iC4H10_10` | `NeIso.yaml` |
+| `data/NeXeIso.root` | `Ne49_Xe49_iC4H10_2` | `NeXeIso.yaml` |
 
 ## Generation
 
@@ -41,8 +41,9 @@ With restv2 built with `restGarfield` in the environment (its `thisREST.sh` sour
 computes all the media at once (each one splitting its field nodes in processes, `restGarfield --jobs`); it
 takes minutes on a machine with ~256 cores, too slow for a CI.
 
-A new medium: a `restGarfield` YAML, its line in `generate.sh` and its medium file, committed together (the
-CI, `.github/workflows/release.yml`, checks that the `mediumFile` of each YAML is in the repository).
+A new medium: a `restGarfield` YAML, its line in `generate.sh` and its medium file (in `data/`), committed
+together (the CI, `.github/workflows/release.yml`, checks that the `mediumFile` of each YAML is in the
+repository).
 
 ## Release
 

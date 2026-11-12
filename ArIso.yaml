@@ -14,7 +14,7 @@ transportManager:
   medium:
     class: "TRestDetectorMedium"
     name: "Ar${PARAM:argon}_iC4H10_${PARAM:isobutane}"
-    mediumFile: "ArIso.root"
+    mediumFile: "data/ArIso.root"
     state: "gas"
     components: {Ar: "${PARAM:argon}", iC4H10: "${PARAM:isobutane}"}
 

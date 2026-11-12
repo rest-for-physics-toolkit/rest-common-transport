@@ -12,7 +12,7 @@ transportManager:
   medium:
     class: "TRestDetectorMedium"
     name: "Ne${PARAM:neon}_iC4H10_${PARAM:isobutane}"
-    mediumFile: "NeIso.root"
+    mediumFile: "data/NeIso.root"
     state: "gas"
     components: {Ne: "${PARAM:neon}", iC4H10: "${PARAM:isobutane}"}
 

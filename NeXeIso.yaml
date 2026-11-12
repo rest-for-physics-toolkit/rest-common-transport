@@ -7,7 +7,7 @@ transportManager:
   medium:
     class: "TRestDetectorMedium"
     name: "Ne49_Xe49_iC4H10_2"
-    mediumFile: "NeXeIso.root"
+    mediumFile: "data/NeXeIso.root"
     state: "gas"
     components: {Ne: 49, Xe: 49, iC4H10: 2}
 

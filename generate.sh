@@ -2,8 +2,9 @@
 # Computes the transport tables of all the media at once (run from this directory):
 #   ./generate.sh
 # Each mixture uses JOBS processes (its field nodes split); the total (mixtures x JOBS) should not exceed the
-# cores of the machine (nproc). The concentrations of a mixture go to the same file (ArIso.root, NeIso.root;
-# the writes are locked). Each log goes to <medium>.log; the tables already in a file are skipped.
+# cores of the machine (nproc). The concentrations of a mixture go to the same file in data/ (ArIso.root,
+# NeIso.root; the writes are locked). Each log goes to <medium>.log; the tables already in a file are
+# skipped.
 JOBS=${JOBS:-25}
 
 run() {  # run <log> <config> [--set name=value ...]
@@ -19,4 +20,4 @@ done
 run Ne49_Xe49_iC4H10_2 NeXeIso.yaml
 
 wait
-echo "Done: $(ls *.root)"
+echo "Done: $(ls data/*.root)"
