@@ -1,0 +1,19 @@
+# Transport tables of Ne 49% + Xe 49% + iC4H10 (isobutane) 2%, medium "Ne49_Xe49_iC4H10_2" in NeXeIso.root:
+#   restGarfield NeXeIso.yaml --jobs 25
+# See ArIso.yaml.
+transportManager:
+  class: "TRestDetectorTransportManager"
+
+  medium:
+    class: "TRestDetectorMedium"
+    name: "Ne49_Xe49_iC4H10_2"
+    mediumFile: "NeXeIso.root"
+    state: "gas"
+    components: {Ne: 49, Xe: 49, iC4H10: 2}
+
+  transport:
+    temperatures: [293.15]
+    fieldRange: [10 V/cm, 3000 V/cm]
+    fieldNodes: 50
+    logField: true
+    nCollisions: 20

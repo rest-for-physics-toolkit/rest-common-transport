@@ -1,0 +1,24 @@
+# Transport tables of Ne + iC4H10 (isobutane), medium "Ne<neon>_iC4H10_<isobutane>" (e.g.
+# Ne98_iC4H10_2) in NeIso.root, one medium per concentration in the same file:
+#   restGarfield NeIso.yaml --set isobutane=2 --set neon=98 --jobs 25
+# The fractions are in %: neon + isobutane = 100. See ArIso.yaml.
+parameters:
+  neon: 99
+  isobutane: 1
+
+transportManager:
+  class: "TRestDetectorTransportManager"
+
+  medium:
+    class: "TRestDetectorMedium"
+    name: "Ne${PARAM:neon}_iC4H10_${PARAM:isobutane}"
+    mediumFile: "NeIso.root"
+    state: "gas"
+    components: {Ne: "${PARAM:neon}", iC4H10: "${PARAM:isobutane}"}
+
+  transport:
+    temperatures: [293.15]
+    fieldRange: [10 V/cm, 3000 V/cm]
+    fieldNodes: 50
+    logField: true
+    nCollisions: 20

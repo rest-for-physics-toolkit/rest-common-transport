@@ -1,0 +1,26 @@
+# Transport tables of Ar + iC4H10 (isobutane), medium "Ar<argon>_iC4H10_<isobutane>" (e.g.
+# Ar98_iC4H10_2) in ArIso.root, one medium per concentration in the same file:
+#   restGarfield ArIso.yaml --set isobutane=2 --set argon=98 --jobs 25
+# The fractions are in %: argon + isobutane = 100. --jobs splits the field nodes in processes (see
+# generate.sh, all the mixtures at once). One table at 1 bar: the medium scales it with E/p to the pressure
+# of the analysis.
+parameters:
+  argon: 99
+  isobutane: 1
+
+transportManager:
+  class: "TRestDetectorTransportManager"
+
+  medium:
+    class: "TRestDetectorMedium"
+    name: "Ar${PARAM:argon}_iC4H10_${PARAM:isobutane}"
+    mediumFile: "ArIso.root"
+    state: "gas"
+    components: {Ar: "${PARAM:argon}", iC4H10: "${PARAM:isobutane}"}
+
+  transport:
+    temperatures: [293.15]
+    fieldRange: [10 V/cm, 3000 V/cm]
+    fieldNodes: 50
+    logField: true
+    nCollisions: 20
