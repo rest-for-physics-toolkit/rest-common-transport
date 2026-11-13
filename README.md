@@ -1,7 +1,7 @@
 # rest-common-transport
 
 Electron transport tables (drift velocity, diffusion, Townsend and attachment versus the field) shared by the
-projects of rest-for-physics-toolkit for [restv2](https://github.com/rest-for-physics-toolkit/rest-framework),
+projects of [rest-for-physics-toolkit](https://github.com/rest-for-physics-toolkit/rest-framework),
 computed with `restGarfield` (Magboltz): gases for now, also other media.
 
 The medium files are committed with their configurations (they are small, and too slow to compute in a CI)
@@ -15,10 +15,10 @@ medium:
   mediumFile: "https://github.com/rest-for-physics-toolkit/rest-common-transport/releases/download/v1.0/ArIso.root"
 ```
 
-restv2 downloads a URL once and keeps it in `$REST_HOME/.rest/download` (it works offline afterwards, e.g. in
-the nodes of a cluster).
+rest-for-physics-toolkit downloads a URL once and keeps it in `$REST_HOME/.rest/download` (it works offline
+afterwards, e.g. in the nodes of a cluster).
 
-Part of the shared resources of restv2 (topic `rest-common`):
+Part of the shared resources of rest-for-physics-toolkit (topic `rest-common`):
 [rest-common-materials](https://github.com/rest-for-physics-toolkit/rest-common-materials) (Geant4 materials),
 transport (this repository) and
 [rest-common-readouts](https://github.com/rest-for-physics-toolkit/rest-common-readouts) (detector readouts).
@@ -37,9 +37,9 @@ composition in %. The files are in `data/`; the asset of the release has the nam
 
 ## Generation
 
-With restv2 built with `restGarfield` in the environment (its `thisREST.sh` sourced), `./generate.sh`
-computes all the media at once (each one splitting its field nodes in processes, `restGarfield --jobs`); it
-takes minutes on a machine with ~256 cores, too slow for a CI.
+With rest-for-physics-toolkit built with `restGarfield` in the environment (its `thisREST.sh` sourced),
+`./generate.sh` computes all the media at once (each one splitting its field nodes in processes,
+`restGarfield --jobs`); it takes minutes on a machine with ~256 cores, too slow for a CI.
 
 A new medium: a `restGarfield` YAML, its line in `generate.sh` and its medium file (in `data/`), committed
 together (the CI, `.github/workflows/release.yml`, checks that the `mediumFile` of each YAML is in the
